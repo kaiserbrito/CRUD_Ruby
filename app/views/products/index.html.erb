@@ -1,0 +1,55 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h4 class="modal-title">Products</h4>
+	</div>
+	<div class="modal-body">
+		<p>
+			<span class="btn-group">
+				<%= link_to 'Add Product', new_product_path, class: 'btn btn-success' %>			
+			</span>
+		</p>
+		<table class="display" id="products" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Short Description</th>
+					<th>Full Description</th>
+					<th>Last Modified</th>
+					<th>Date Added</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Short Description</th>
+					<th>Full Description</th>
+					<th>Last Modified</th>
+					<th>Date Added</th>
+					<th>Actions</th>
+				</th>
+			</tfoot>
+			<tbody>
+				<% @products.each do |product| %>
+					<tr>
+						<td><%= product.name %></td>
+						<td>$ <%= product.price %></td>
+						<td><%= truncate(product.short_description, :length => 75) %></td>
+						<td><%= truncate(product.full_description, :length => 150) %></td>
+						<td><%= product.updated_at %></td>
+						<td><%= product.created_at %></td>
+						<td>
+							<div class="btn-group">
+								<%= link_to 'Show', product_path(product), class: 'btn btn-primary' %>
+								<%= link_to 'Edit', edit_product_path(product), class: 'btn btn-success' %>
+								<%= link_to 'delete', product_path(product), class: 'btn btn-danger' %>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
